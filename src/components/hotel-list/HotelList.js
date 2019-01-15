@@ -8,13 +8,10 @@ import './HotelList.scss';
 
 
 class HotelList extends Component {
-  state= {
-    noResult: false
-  }
-
   render() {
     /* Retrieving Hotels' data from parent component through props */
     const filteredHotels = this.props.hotels;
+    const noResult = this.props.noResult;
 
     /* Mapping retrieved Hotels' data to Hotel Cards to be shown in the list */
     const hotelList = filteredHotels.map(
@@ -26,10 +23,14 @@ class HotelList extends Component {
     )
 
     return ( 
+      
       <div className = "hotel-app__list" > 
         {
-          (this.state.noResult) ? 
-            <div className="no-result"></div>
+          noResult 
+          ? 
+            <div className="no-result">
+              <h1>No Result Found</h1>
+            </div>
           :
             hotelList  
         }

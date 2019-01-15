@@ -13,7 +13,8 @@ class HotelsApp extends Component {
     state = {
         hotels: [],
         filteredHotels: [],
-        isLoading: false
+        isLoading: true,
+        noResult: false
     }
 
     componentDidMount(){
@@ -24,7 +25,7 @@ class HotelsApp extends Component {
         .then(hotelsData => this.setState({
             hotels: hotelsData.hotels,
             filteredHotels: hotelsData.hotels,
-            isLoading: true
+            isLoading: false
         }));      
     }
 
@@ -77,9 +78,18 @@ class HotelsApp extends Component {
 
                 return hotelName.includes(hotelSearch);
             });
+            
             this.setState({
-                filteredHotels: searchedHotels
+                filteredHotels: searchedHotels,
+                noResult: false
             })
+
+            if(searchedHotels.length == 0){
+                this.setState({
+                    noResult: true
+                })
+            }
+            
         }
     }
 
@@ -103,15 +113,16 @@ class HotelsApp extends Component {
                     
                     <section>
                         {
-                            (hotels.length > 0) 
+                            this.state.isLoading 
                             ?
-                                <HotelsList hotels={ hotels } />
+                                <section className="loadingSpinner">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </section>    
                             : 
-                            <section className="loadingSpinner">
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                            </section>
+                                <HotelsList noResult={this.state.noResult}  hotels={ hotels } />
+                            
                         }
                     </section>
                 </section>
