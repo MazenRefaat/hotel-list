@@ -1,0 +1,24 @@
+/* Search Component Styles */
+
+
+.hotel-app__list-search {
+    padding: 20px 5px;
+    .searchWrapper {
+        position: relative;
+        input {
+            font-size: 14px;
+            padding: 5px 5px 5px 30px;
+            border-radius: 5px;
+            box-shadow: none;
+            outline: none;
+            border: 1px solid #ccc;
+        }
+
+        >span {
+            position: absolute;
+            left: 8px;
+            top: 2px;
+
+        }
+    }
+}

@@ -1,0 +1,30 @@
+/* Sort Component Styles */
+
+.hotel-app__list-sort {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 0;
+
+    .sort-name,
+    .sort-price {
+        margin-left: 10px;
+
+        >button {
+            font-size: 12px;
+            min-width: 150px;
+            padding: 7px 15px;
+            background-color: #fff;
+            border-radius: 5px;
+
+            &:focus {
+                outline: none;
+            }
+
+            >span[order='asc'] {
+                display: inline-block;
+                transform: rotate(180deg);
+            }
+
+        }
+    }
+}
